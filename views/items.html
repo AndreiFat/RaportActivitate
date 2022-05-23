@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" rel="stylesheet">
+    <link href="/stylesheets/style.css" rel="stylesheet">
+</head>
+<body id="body">
+<div class="container">
+    <!--    homepage + add task button-->
+    <div class="row">
+        <div class="col-9">
+            <h1 class="pb-3">
+                Homepage
+            </h1>
+        </div>
+        <div class="col-3 d-flex justify-content-end">
+            <button class="btn btn-primary my-auto " data-bs-target="#exampleModal" data-bs-toggle="modal"
+                    type="button">
+                Add new task
+            </button>
+        </div>
+    </div>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div aria-atomic="true" aria-live="assertive" class="toast" id="liveToast" role="alert">
+            <div class="toast-header">
+                <strong class="me-auto">Notification</strong>
+                <small>now</small>
+                <button aria-label="Close" class="btn-close" data-bs-dismiss="toast" type="button"></button>
+            </div>
+            <div class="toast-body">
+                Your task was added successfully!
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class=""><h3>
+                Task Table
+            </h3>
+            </div>
+            <div id="tableDiv">
+                <table class="table table-hover align-middle" id="taskTable">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Task Name</th>
+                        <th scope="col">Week</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="">
+            <!-- Modal -->
+            <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="exampleModal"
+                 tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add new task</h5>
+                            <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="taskForm" method="post">
+                                <div class="mb-3">
+                                    <label class="form-label" for="taskName">Task Name</label>
+                                    <input aria-describedby="taskName" class="form-control" id="taskName" type="text">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="week">Week</label>
+                                    <input class="form-control" id="week" type="date">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="description">Description</label>
+                                    <textarea class="form-control" id="description" type="text"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" id="submit" type="submit">Send task</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="editModal"
+                 tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="titleEdit">Edit task</h5>
+                            <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="editForm">
+                                <div class="mb-3">
+                                    <label class="form-label" for="taskNameEdit">Task Name</label>
+                                    <input aria-describedby="taskName" class="form-control" id="taskNameEdit"
+                                           type="text">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="weekEdit">Week</label>
+                                    <input class="form-control" id="weekEdit" type="date">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="descriptionEdit">Description</label>
+                                    <textarea class="form-control" id="descriptionEdit" type="text"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="statusEdit">Status</label>
+                                    <input class="form-control" id="statusEdit" type="text">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" id="submitEdit" type="submit">Update task
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script crossorigin="anonymous" src="https://kit.fontawesome.com/8d27e204d1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/javascripts/postRequest.js"></script>
+<script src="/javascripts/getRequest.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+<script crossorigin="anonymous"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
